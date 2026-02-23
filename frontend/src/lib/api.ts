@@ -133,7 +133,12 @@ export const seriesApi = {
 
 // ========== Stats API ==========
 export const statsApi = {
-  overview: () => fetchApi<any>("/api/stats/overview"),
+  overview: (goalId?: string) => {
+    const query = new URLSearchParams();
+    if (goalId) query.set("goal_id", goalId);
+    const qs = query.toString();
+    return fetchApi<any>(`/api/stats/overview${qs ? `?${qs}` : ""}`);
+  },
 
   heatmap: (goalId?: string, seriesId?: string) => {
     const query = new URLSearchParams();
@@ -143,7 +148,13 @@ export const statsApi = {
     return fetchApi<any[]>(`/api/stats/heatmap${qs ? `?${qs}` : ""}`);
   },
 
-  weekly: () => fetchApi<any[]>("/api/stats/weekly"),
+  weekly: (goalId?: string, weeks?: number) => {
+    const query = new URLSearchParams();
+    if (goalId) query.set("goal_id", goalId);
+    if (weeks) query.set("weeks", weeks.toString());
+    const qs = query.toString();
+    return fetchApi<any[]>(`/api/stats/weekly${qs ? `?${qs}` : ""}`);
+  },
 };
 
 // ========== Tags API ==========

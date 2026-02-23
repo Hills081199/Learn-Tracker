@@ -21,6 +21,7 @@ export default function GoalDetailPage() {
   const [goal, setGoal] = useState<LearningGoal | null>(null);
   const [seriesList, setSeriesList] = useState<LearningSeries[]>([]);
   const [heatmap, setHeatmap] = useState<HeatmapData[]>([]);
+  const [streak, setStreak] = useState<number>(0);
   const [loading, setLoading] = useState(true);
   const [showGoalEdit, setShowGoalEdit] = useState(false);
   const [showSeriesForm, setShowSeriesForm] = useState(false);
@@ -28,14 +29,16 @@ export default function GoalDetailPage() {
 
   const loadData = useCallback(async () => {
     try {
-      const [goalData, seriesData, heatmapData] = await Promise.all([
+      const [goalData, seriesData, heatmapData, overviewData] = await Promise.all([
         goalsApi.get(goalId),
         seriesApi.list(goalId),
         statsApi.heatmap(goalId),
+        statsApi.overview(goalId),
       ]);
       setGoal(goalData);
       setSeriesList(seriesData);
       setHeatmap(heatmapData);
+      setStreak(overviewData.streak ?? 0);
     } catch (err) {
       toast.error("Không thể tải dữ liệu");
       router.push("/goals");
@@ -148,7 +151,7 @@ export default function GoalDetailPage() {
         {/* Goal Insights */}
         <div className="bg-white rounded-xl border border-stone-200 p-5">
           <h3 className="font-semibold text-stone-900 mb-4">Phân tích & Insights</h3>
-          <GoalInsights data={heatmap} />
+          <GoalInsights data={heatmap} streak={streak} />
         </div>
 
         {/* Series List */}

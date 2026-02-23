@@ -25,6 +25,7 @@ import {
 
 interface GoalInsightsProps {
   data: HeatmapData[];
+  streak?: number;
   onDateClick?: (date: string) => void;
   selectedDate?: string | null;
   showInteractiveCalendar?: boolean;
@@ -32,6 +33,7 @@ interface GoalInsightsProps {
 
 export default function GoalInsights({ 
   data,
+  streak,
   onDateClick,
   selectedDate,
   showInteractiveCalendar = false,
@@ -93,15 +95,8 @@ export default function GoalInsights({
         ? 100
         : 0;
 
-    // Calculate streak
-    let currentStreak = 0;
-    for (let i = last30Days.length - 1; i >= 0; i--) {
-      if (last30Days[i].duration > 0) {
-        currentStreak++;
-      } else {
-        break;
-      }
-    }
+    // Use streak from backend (accurate for all dates, not limited to 30 days)
+    const currentStreak = streak ?? 0;
 
     // Most productive day of week
     const dayOfWeekStats = [0, 0, 0, 0, 0, 0, 0]; // Sun-Sat
