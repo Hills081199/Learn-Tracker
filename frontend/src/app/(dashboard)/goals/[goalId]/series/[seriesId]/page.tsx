@@ -172,7 +172,6 @@ export default function SeriesDetailPage() {
           <div className="text-xs sm:text-sm text-stone-500">Tổng thời gian</div>
         </div>
         <div className="bg-white rounded-xl border border-stone-200 p-3 sm:p-4 text-center">
-          <div className="text-xl sm:text-2xl mb-1">📅</div>
           <div className="text-sm sm:text-lg font-bold text-stone-900 truncate px-1">
             {series.last_record_date
               ? formatDate(series.last_record_date)
@@ -204,7 +203,7 @@ export default function SeriesDetailPage() {
                   onClick={() => setSelectedDate(null)}
                   className="ml-1 text-stone-400 hover:text-stone-600"
                 >
-                  ✕
+                  ×
                 </button>
               </span>
             )}
@@ -216,7 +215,6 @@ export default function SeriesDetailPage() {
 
         {filteredRecords.length === 0 ? (
           <div className="text-center py-12 bg-white rounded-xl border border-stone-200">
-            <div className="text-4xl mb-3">📝</div>
             <p className="text-stone-500">Chưa có bản ghi nào</p>
             <button
               onClick={() => {

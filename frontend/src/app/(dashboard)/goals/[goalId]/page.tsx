@@ -163,7 +163,6 @@ export default function GoalDetailPage() {
 
         {seriesList.length === 0 ? (
           <div className="text-center py-12 bg-white rounded-xl border border-stone-200">
-            <div className="text-4xl mb-3">📖</div>
             <p className="text-stone-500">Chưa có serie nào</p>
             <p className="text-stone-400 text-sm mt-1">
               Tạo serie để nhóm các bản ghi học tập lại

@@ -73,7 +73,6 @@ export default function SearchPage() {
 
           {results.length === 0 ? (
             <div className="text-center py-12 bg-white rounded-xl border border-stone-200">
-              <div className="text-4xl mb-3">🔍</div>
               <p className="text-stone-500">
                 Không tìm thấy kết quả phù hợp
               </p>

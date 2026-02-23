@@ -207,7 +207,7 @@ export default function RecordCard({
                     rel="noopener noreferrer"
                     className="flex items-center gap-1 px-2 py-1 bg-stone-50 rounded text-xs text-teal-600 hover:bg-teal-50"
                   >
-                    📎 {att.name}
+                    {att.name}
                   </a>
                 ))}
               </div>

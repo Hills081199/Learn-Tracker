@@ -71,7 +71,7 @@ export default function RecordEditor({
       TiptapLink.configure({ openOnClick: false }),
       Underline,
       Placeholder.configure({
-        placeholder: "Hôm nay bạn đã học được gì? ✍️",
+        placeholder: "Hôm nay bạn đã học được gì?",
       }),
       TaskList,
       TaskItem.configure({ nested: true }),

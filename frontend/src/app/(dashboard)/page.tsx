@@ -51,7 +51,6 @@ export default function DashboardPage() {
   if (!stats) {
     return (
       <div className="text-center py-16">
-        <div className="text-6xl mb-4">📚</div>
         <h2 className="text-xl font-semibold text-stone-800 mb-2">
           Chào mừng đến LearnTracker!
         </h2>

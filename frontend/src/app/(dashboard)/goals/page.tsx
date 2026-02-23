@@ -119,7 +119,6 @@ export default function GoalsPage() {
         </div>
       ) : goals.length === 0 ? (
         <div className="text-center py-16">
-          <div className="text-6xl mb-4">🎯</div>
           <h3 className="text-lg font-medium text-stone-900 mb-2">
             Chưa có mục tiêu nào
           </h3>

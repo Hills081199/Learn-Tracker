@@ -1,4 +1,4 @@
-# 📚 LearnTracker v1.0
+# LearnTracker v1.0
 
 > **Personal Learning Journey Management Application** — Track your goals, monitor progress, and maintain effective learning habits.
 
@@ -6,16 +6,16 @@ LearnTracker helps you organize and track your learning goals through daily lear
 
 ---
 
-## ✨ Key Features
+## Key Features
 
-### 🎯 Learning Goals Management
+### Learning Goals Management
 - Create and manage multiple learning goals
 - Customize emoji, color, and description for each goal
 - Track progress with timeline and target dates
 - Categorize by status: Active, Paused, Completed, Archived
 - Quick search and filter goals
 
-### 📝 Learning Journal with Rich Text Editor
+### Learning Journal with Rich Text Editor
 - **Powerful WYSIWYG Editor** powered by Tiptap:
   - Text formatting: Bold, Italic, Underline, Strikethrough
   - Headings (H1, H2, H3)
@@ -29,20 +29,20 @@ LearnTracker helps you organize and track your learning goals through daily lear
 - Tag entries for easy categorization and search
 - Autosave draft content
 
-### 📊 Dashboard & Statistics
+### Dashboard & Statistics
 - **Calendar Heatmap**: Visualize daily learning streaks (like GitHub contribution graph)
 - **Time Charts**: Analyze study minutes by day/week
 - **Overview Statistics**: Total records, total study hours, current streak
 - **Recent Activities**: Quick view of recent learning entries
 - Time allocation analysis across goals
 
-### 🔍 Powerful Search & Filter
+### Powerful Search & Filter
 - Full-text search on content and titles
 - Filter by: Goal, Tags, Date range, Mood level
 - Multiple sort options: Newest, Oldest, Duration
 - Keyword highlighting in search results
 
-### 🏷️ Flexible Tag System
+### Flexible Tag System
 - Create and manage tags for Goals and Records
 - Customize colors for easy distinction
 - Multi-select tags when journaling
@@ -50,7 +50,7 @@ LearnTracker helps you organize and track your learning goals through daily lear
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Frontend
 - **Framework**: Next.js 15 (App Router)
@@ -74,7 +74,7 @@ LearnTracker helps you organize and track your learning goals through daily lear
 
 ---
 
-## 🚀 Installation & Setup Guide
+## Installation & Setup Guide
 
 ### System Requirements
 - Docker Desktop (latest version)
@@ -113,7 +113,7 @@ docker-compose down -v
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 LearnTracker/
@@ -171,7 +171,7 @@ LearnTracker/
 
 ---
 
-## 🔧 Development Guide
+## Development Guide
 
 ### Hot Reload
 The application is configured with volume mounts for hot reload support:
@@ -218,7 +218,7 @@ cat backup.sql | docker exec -i learntracker-db psql -U learntracker -d learntra
 
 ---
 
-## 📡 API Documentation
+## API Documentation
 
 The backend provides RESTful API with the following main endpoints:
 
@@ -255,7 +255,7 @@ The backend provides RESTful API with the following main endpoints:
 
 ---
 
-## 🎨 Features Detail
+## Features Detail
 
 ### Rich Text Editor Features
 The editor is powered by **Tiptap** with the following features:
@@ -302,44 +302,44 @@ Visualizes daily learning intensity:
 
 ---
 
-## 🗺️ Roadmap
+## Roadmap
 
-### Version 1.0 (Current) ✅
-- ✅ Complete CRUD for Goals & Records
-- ✅ Rich Text Editor with image upload
-- ✅ Dashboard with charts & heatmap
-- ✅ Tag system
-- ✅ Mood & duration tracking
-- ✅ Full-text search
-- ✅ Timeline view & Calendar view
-- ✅ Responsive design (mobile-friendly)
+### Version 1.0 (Current)
+- Complete CRUD for Goals & Records
+- Rich Text Editor with image upload
+- Dashboard with charts & heatmap
+- Tag system
+- Mood & duration tracking
+- Full-text search
+- Timeline view & Calendar view
+- Responsive design (mobile-friendly)
 
 ### Version 2.0 (Planned)
-- 🔲 **AI-powered features**:
+- **AI-powered features**:
   - AI Weekly Review Agent (summarize and evaluate weekly progress)
   - Smart Suggestions (recommend next learning content)
   - Quiz Generator from learned content
-- 🔲 **Data Export**: JSON, Markdown, PDF
-- 🔲 **Reminder System**: Push notifications & Email reminders
-- 🔲 **Theme Customization**: Dark/Light mode
-- 🔲 **Multi-user support**: Authentication & user management
-- 🔲 **Mobile App**: React Native app
-- 🔲 **Collaboration**: Share goals & records with others
+- **Data Export**: JSON, Markdown, PDF
+- **Reminder System**: Push notifications & Email reminders
+- **Theme Customization**: Dark/Light mode
+- **Multi-user support**: Authentication & user management
+- **Mobile App**: React Native app
+- **Collaboration**: Share goals & records with others
 
 ---
 
-## 📄 License
+## License
 
 [Specify your license here]
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
 ---
 
-## 📧 Contact
+## Contact
 
 [Your contact information]
