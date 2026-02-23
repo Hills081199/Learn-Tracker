@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========== Custom Properties ========== */
+:root {
+  --color-primary: #0d9488;
+  --color-primary-dark: #0f766e;
+}
+
+/* ========== Base Styles ========== */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========== Tiptap Editor Styles ========== */
+.tiptap {
+  @apply outline-none min-h-[200px];
+}
+
+.tiptap h1 {
+  @apply text-2xl font-bold mb-2;
+}
+
+.tiptap h2 {
+  @apply text-xl font-semibold mb-2;
+}
+
+.tiptap h3 {
+  @apply text-lg font-medium mb-1;
+}
+
+.tiptap p {
+  @apply mb-2;
+}
+
+.tiptap ul {
+  @apply list-disc list-inside mb-2;
+}
+
+.tiptap ol {
+  @apply list-decimal list-inside mb-2;
+}
+
+.tiptap blockquote {
+  @apply border-l-4 border-gray-300 pl-4 italic my-2;
+}
+
+.tiptap pre {
+  @apply bg-gray-900 text-gray-100 rounded-lg p-4 my-2 overflow-x-auto;
+}
+
+.tiptap code {
+  @apply bg-gray-100 text-pink-600 px-1 py-0.5 rounded text-sm;
+}
+
+.tiptap pre code {
+  @apply bg-transparent text-gray-100 p-0;
+}
+
+.tiptap img {
+  @apply h-auto rounded-lg my-2;
+  max-width: 100%;
+}
+
+.resizable-image-wrapper {
+  @apply my-2;
+  display: inline-block;
+  max-width: 100%;
+  line-height: 0;
+}
+
+.resizable-image-wrapper.ProseMirror-selectednode > div {
+  outline: none;
+}
+
+.tiptap hr {
+  @apply my-4 border-gray-300;
+}
+
+.tiptap table {
+  @apply w-full border-collapse my-2;
+}
+
+.tiptap table td,
+.tiptap table th {
+  @apply border border-gray-300 p-2 text-left;
+}
+
+.tiptap table th {
+  @apply bg-gray-100 font-semibold;
+}
+
+.tiptap ul[data-type="taskList"] {
+  @apply list-none pl-0;
+}
+
+.tiptap ul[data-type="taskList"] li {
+  @apply flex items-start gap-2;
+}
+
+.tiptap ul[data-type="taskList"] li label {
+  @apply mt-1;
+}
+
+.tiptap a {
+  @apply text-blue-600 underline;
+}
+
+.tiptap s {
+  @apply line-through;
+}
+
+/* ========== Scrollbar ========== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400;
+}
