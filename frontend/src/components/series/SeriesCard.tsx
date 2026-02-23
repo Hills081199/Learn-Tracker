@@ -26,81 +26,86 @@ export default function SeriesCard({
     <>
       <Link
         href={`/goals/${goalId}/series/${series.id}`}
-        className="group block bg-white rounded-xl border border-stone-200 shadow-card hover:shadow-card-hover transition-shadow p-5"
+        className="group block bg-white rounded-xl border border-stone-200 hover:border-teal-200 hover:shadow-sm transition-all p-4"
       >
-        <div className="flex items-start justify-between">
-          <div className="flex items-center gap-3 min-w-0">
-            <div className="w-11 h-11 rounded-lg bg-stone-100 flex items-center justify-center text-xl shrink-0 group-hover:scale-105 transition-transform">
-              {series.emoji || "📖"}
+        <div className="flex items-center gap-4">
+          {/* Icon */}
+          <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-teal-50 to-teal-100 flex items-center justify-center text-2xl shrink-0 group-hover:scale-105 transition-transform border border-teal-200">
+            {series.emoji || "📖"}
+          </div>
+
+          {/* Content */}
+          <div className="flex-1 min-w-0">
+            <div className="flex items-start justify-between gap-3">
+              <div className="min-w-0 flex-1">
+                <h3 className="font-semibold text-stone-900 truncate group-hover:text-teal-700 transition-colors text-lg">
+                  {series.title}
+                </h3>
+                {series.description && (
+                  <p className="text-sm text-stone-500 mt-1 line-clamp-2">
+                    {series.description}
+                  </p>
+                )}
+              </div>
+
+              {/* Menu */}
+              <div className="relative shrink-0">
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setShowMenu(!showMenu);
+                  }}
+                  className="p-2 rounded-lg hover:bg-stone-100 transition-colors"
+                >
+                  <MoreVertical className="w-4 h-4 text-stone-400" />
+                </button>
+                {showMenu && (
+                  <div className="absolute right-0 top-10 bg-white border border-stone-200 rounded-lg shadow-lg py-1 z-10 min-w-[140px]">
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        onEdit();
+                        setShowMenu(false);
+                      }}
+                      className="flex items-center gap-2 w-full px-3 py-2 text-sm text-stone-700 hover:bg-stone-50"
+                    >
+                      <Pencil className="w-4 h-4" /> Chỉnh sửa
+                    </button>
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setShowDeleteConfirm(true);
+                        setShowMenu(false);
+                      }}
+                      className="flex items-center gap-2 w-full px-3 py-2 text-sm text-red-600 hover:bg-red-50"
+                    >
+                      <Trash2 className="w-4 h-4" /> Xoá
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
-            <div className="min-w-0">
-              <h3 className="font-semibold text-stone-900 truncate group-hover:text-teal-700 transition-colors">
-                {series.title}
-              </h3>
-              {series.description && (
-                <p className="text-sm text-stone-500 mt-0.5 line-clamp-1">
-                  {series.description}
-                </p>
+
+            {/* Stats */}
+            <div className="flex items-center gap-4 mt-3 text-sm">
+              <span className="flex items-center gap-1.5 text-stone-600">
+                <FileText className="w-4 h-4 text-teal-500" />
+                <span className="font-medium">{series.record_count}</span> bản ghi
+              </span>
+              <span className="flex items-center gap-1.5 text-stone-600">
+                <Clock className="w-4 h-4 text-amber-500" />
+                <span className="font-medium">{formatDuration(series.total_duration || 0)}</span>
+              </span>
+              {series.last_record_date && (
+                <span className="text-xs text-stone-400 ml-auto">
+                  Cập nhật: {formatDate(series.last_record_date)}
+                </span>
               )}
             </div>
           </div>
-
-          {/* Menu */}
-          <div className="relative shrink-0">
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                setShowMenu(!showMenu);
-              }}
-              className="p-1.5 rounded-lg hover:bg-stone-100 opacity-0 group-hover:opacity-100 transition-opacity"
-            >
-              <MoreVertical className="w-4 h-4 text-stone-400" />
-            </button>
-            {showMenu && (
-              <div className="absolute right-0 top-8 bg-white border border-stone-200 rounded-lg shadow-lg py-1 z-10 min-w-[140px]">
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    onEdit();
-                    setShowMenu(false);
-                  }}
-                  className="flex items-center gap-2 w-full px-3 py-2 text-sm text-stone-700 hover:bg-stone-50"
-                >
-                  <Pencil className="w-4 h-4" /> Chỉnh sửa
-                </button>
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setShowDeleteConfirm(true);
-                    setShowMenu(false);
-                  }}
-                  className="flex items-center gap-2 w-full px-3 py-2 text-sm text-red-600 hover:bg-red-50"
-                >
-                  <Trash2 className="w-4 h-4" /> Xoá
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Stats */}
-        <div className="flex items-center gap-4 mt-3 text-sm text-stone-500">
-          <span className="flex items-center gap-1.5">
-            <FileText className="w-3.5 h-3.5" />
-            {series.record_count} bản ghi
-          </span>
-          <span className="flex items-center gap-1.5">
-            <Clock className="w-3.5 h-3.5" />
-            {formatDuration(series.total_duration || 0)}
-          </span>
-          {series.last_record_date && (
-            <span className="text-xs text-stone-400 ml-auto">
-              {formatDate(series.last_record_date)}
-            </span>
-          )}
         </div>
       </Link>
 

@@ -12,9 +12,8 @@ import type {
 } from "@/types";
 import { formatDuration, formatDate } from "@/lib/utils";
 import RecordCard from "@/components/records/RecordCard";
-import CalendarHeatmap from "@/components/records/CalendarHeatmap";
 import SeriesForm from "@/components/series/SeriesForm";
-import { ArrowLeft, Plus, Clock, FileText, Settings } from "lucide-react";
+import { ArrowLeft, Plus, Clock, FileText, Settings, Calendar } from "lucide-react";
 import Link from "next/link";
 import toast from "react-hot-toast";
 
@@ -172,6 +171,7 @@ export default function SeriesDetailPage() {
           <div className="text-xs sm:text-sm text-stone-500">Tổng thời gian</div>
         </div>
         <div className="bg-white rounded-xl border border-stone-200 p-3 sm:p-4 text-center">
+          <Calendar className="w-5 h-5 sm:w-6 sm:h-6 text-sky-500 mx-auto mb-1" />
           <div className="text-sm sm:text-lg font-bold text-stone-900 truncate px-1">
             {series.last_record_date
               ? formatDate(series.last_record_date)
@@ -181,15 +181,55 @@ export default function SeriesDetailPage() {
         </div>
       </div>
 
-      {/* Calendar Heatmap */}
-      <div className="bg-white rounded-xl border border-stone-200 p-5">
-        <h3 className="font-semibold text-stone-900 mb-4">Lịch học tập</h3>
-        <CalendarHeatmap
-          data={heatmap}
-          onDateClick={handleDateClick}
-          selectedDate={selectedDate}
-        />
-      </div>
+      {/* Quick Date Filter */}
+      {heatmap.length > 0 && (
+        <div className="bg-white rounded-xl border border-stone-200 p-4">
+          <div className="flex items-center justify-between mb-3">
+            <h4 className="text-sm font-semibold text-stone-900">Lọc theo ngày</h4>
+            {selectedDate && (
+              <button
+                onClick={() => setSelectedDate(null)}
+                className="text-xs px-2 py-1 bg-stone-100 text-stone-600 rounded hover:bg-stone-200 transition-colors"
+              >
+                Xóa bộ lọc
+              </button>
+            )}
+          </div>
+          <div className="overflow-x-auto">
+            <div className="flex gap-1.5">
+              {heatmap
+                .filter((d) => d.count > 0)
+                .sort((a, b) => b.date.localeCompare(a.date))
+                .slice(0, 20)
+                .map((day) => (
+                  <button
+                    key={day.date}
+                    onClick={() => handleDateClick(day.date)}
+                    className={`flex flex-col items-center px-2 py-1.5 rounded-lg border transition-all hover:bg-teal-50 hover:border-teal-300 ${
+                      selectedDate === day.date
+                        ? "bg-teal-100 border-teal-500"
+                        : "bg-white border-stone-200"
+                    }`}
+                    style={{ minWidth: "50px" }}
+                  >
+                    <div className="text-[10px] text-stone-500">
+                      {new Date(day.date + "T00:00:00").toLocaleDateString("vi-VN", {
+                        day: "2-digit",
+                        month: "2-digit",
+                      })}
+                    </div>
+                    <div className="text-xs font-semibold text-teal-600">
+                      {day.count}
+                    </div>
+                    <div className="text-[9px] text-stone-400">
+                      {formatDuration(day.duration)}
+                    </div>
+                  </button>
+                ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Record Timeline */}
       <div>

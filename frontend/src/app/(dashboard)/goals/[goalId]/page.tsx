@@ -5,7 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import { goalsApi, seriesApi, statsApi } from "@/lib/api";
 import type { LearningGoal, LearningSeries, HeatmapData } from "@/types";
 import { formatDuration, formatDate } from "@/lib/utils";
-import CalendarHeatmap from "@/components/records/CalendarHeatmap";
+import GoalInsights from "@/components/goals/GoalInsights";
 import GoalForm from "@/components/goals/GoalForm";
 import SeriesCard from "@/components/series/SeriesCard";
 import SeriesForm from "@/components/series/SeriesForm";
@@ -143,56 +143,59 @@ export default function GoalDetailPage() {
         </div>
       </div>
 
-      {/* Calendar Heatmap */}
-      <div className="bg-white rounded-xl border border-stone-200 p-5">
-        <h3 className="font-semibold text-stone-900 mb-4">Lịch học tập</h3>
-        <CalendarHeatmap data={heatmap} />
-      </div>
-
-      {/* Series List */}
-      <div>
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="font-semibold text-stone-900 flex items-center gap-2">
-            <Layers className="w-5 h-5 text-teal-500" />
-            Các serie bài học
-          </h3>
-          <span className="text-sm text-stone-500">
-            {seriesList.length} serie
-          </span>
+      {/* Main Content: Insights & Series List */}
+      <div className="grid lg:grid-cols-[1fr_1.5fr] gap-6">
+        {/* Goal Insights */}
+        <div className="bg-white rounded-xl border border-stone-200 p-5">
+          <h3 className="font-semibold text-stone-900 mb-4">Phân tích & Insights</h3>
+          <GoalInsights data={heatmap} />
         </div>
 
-        {seriesList.length === 0 ? (
-          <div className="text-center py-12 bg-white rounded-xl border border-stone-200">
-            <p className="text-stone-500">Chưa có serie nào</p>
-            <p className="text-stone-400 text-sm mt-1">
-              Tạo serie để nhóm các bản ghi học tập lại
-            </p>
-            <button
-              onClick={() => {
-                setEditSeries(null);
-                setShowSeriesForm(true);
-              }}
-              className="mt-4 px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors text-sm font-medium"
-            >
-              Tạo serie đầu tiên
-            </button>
+        {/* Series List */}
+        <div>
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="font-semibold text-stone-900 flex items-center gap-2">
+              <Layers className="w-5 h-5 text-teal-500" />
+              Các serie bài học
+            </h3>
+            <span className="text-sm text-stone-500">
+              {seriesList.length} serie
+            </span>
           </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {seriesList.map((s) => (
-              <SeriesCard
-                key={s.id}
-                series={s}
-                goalId={goalId}
-                onEdit={() => {
-                  setEditSeries(s);
+
+          {seriesList.length === 0 ? (
+            <div className="text-center py-12 bg-white rounded-xl border border-stone-200">
+              <p className="text-stone-500">Chưa có serie nào</p>
+              <p className="text-stone-400 text-sm mt-1">
+                Tạo serie để nhóm các bản ghi học tập lại
+              </p>
+              <button
+                onClick={() => {
+                  setEditSeries(null);
                   setShowSeriesForm(true);
                 }}
-                onDelete={() => handleDeleteSeries(s.id)}
-              />
-            ))}
-          </div>
-        )}
+                className="mt-4 px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors text-sm font-medium"
+              >
+                Tạo serie đầu tiên
+              </button>
+            </div>
+          ) : (
+            <div className="space-y-3 max-h-[750px] overflow-y-auto pr-2">
+              {seriesList.map((s) => (
+                <SeriesCard
+                  key={s.id}
+                  series={s}
+                  goalId={goalId}
+                  onEdit={() => {
+                    setEditSeries(s);
+                    setShowSeriesForm(true);
+                  }}
+                  onDelete={() => handleDeleteSeries(s.id)}
+                />
+              ))}
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Series Form Modal */}
